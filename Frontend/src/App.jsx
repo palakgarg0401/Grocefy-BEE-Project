@@ -14,6 +14,7 @@ import MyOrder from "./pages/MyOrder.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { Toaster } from "react-hot-toast";
 
+
 const App = () => {
 
   const adminPath = useLocation().pathname.includes("admin");

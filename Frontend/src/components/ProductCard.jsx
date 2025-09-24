@@ -13,6 +13,7 @@ const ProductCard = ({ product }) => {
           src={`http://localhost:4000/uploads/${product.images[0]}`}
           alt=""
         />
+        
       </Link>
       <button
         onClick={() => addToCart(product)}

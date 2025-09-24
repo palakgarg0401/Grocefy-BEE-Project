@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import { AppContext } from "../context/AppContext.jsx"
 
 const Signup = () => {
-  const {navigate} = useContext(AppContext);
+  const {navigate, axios} = useContext(AppContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,13 +16,22 @@ const Signup = () => {
     setFormData({...formData, [e.target.name]:e.target.value});
   }
 
-  const submitHandler = (e)=>{
+  const submitHandler = async(e)=>{
     e.preventDefault();
-    console.log(formData);
+    try{
+      const {data}=await axios.post("/api/auth/signup",formData);
+      if(data.success){
+        toast.success(data.message);
 
-    toast.success("signup successfull");
-    navigate("/login");
-  }
+        navigate("/login");
+      }else{
+        toast.error(data.message);
+      }
+    }catch (error){
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div 
       className="py-12 h-screen bg-[#0B482F]" 
