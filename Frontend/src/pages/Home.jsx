@@ -1,14 +1,22 @@
-import React from 'react'
-import Hero from '../components/Hero.jsx'
+import Blogs from "../components/Blogs";
+import Brands from "../components/Brands";
+import CallToAction from "../components/CallToAction";
+import Category from "../components/Category";
+import Hero from "../components/Hero";
+import NewsLetter from "../components/Newsletter";
+import Products from "../components/Products";
 
 const Home = () => {
-  
-  
   return (
     <div>
       <Hero />
+      <Category />
+      <Products />
+      <CallToAction />
+      <Blogs />
+      <Brands />
+      <NewsLetter />
     </div>
-  )
-}
-
-export default Home
+  );
+};
+export default Home;
