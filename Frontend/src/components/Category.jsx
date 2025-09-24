@@ -46,7 +46,7 @@ const Category = () => {
         }}
         className="w-full my-5"
       >
-        {categoriesData.map((category, i) => (
+        {(categoriesData || []).map((category, i) => (
           <SwiperSlide key={i}>
             <motion.div
               whileHover={{ rotate: 360 }}
