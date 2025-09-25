@@ -41,6 +41,7 @@ export const login = async(req,res)=>{
             return res.status(400).json({message: "All fields are required",success: false});
         }
         const user = await User.findOne({email});
+        console.log("user",user);
         if(!user){
             return res.status(400).json({message: "User does not exist", success: false});
         }
@@ -68,4 +69,15 @@ export const logout= async(req,res)=>{
         httpOnly: true,
     });
     res.json({ message: "Logout successfully", success: true});
+};
+
+export const checkAuth=async(req,res)=>{
+    try{
+        const {id}=req.user;
+        const user=await User.findById(id);
+        return res.status(200).json({success:true});
+    }catch(error){
+        res.json({message:"Internal server error",success:false});
+
+    }
 };

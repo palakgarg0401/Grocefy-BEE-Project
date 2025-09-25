@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 export const adminLogin=async(req,res)=>{
     try{
         const { email, password } = req.body;
+        console.log(email,password);
         if(!email || !password)
             return res
                 .status(400)
@@ -17,7 +18,7 @@ export const adminLogin=async(req,res)=>{
                 const token = jwt.sign({ email: email }, process.env.JWT_SECRET, {
                     expiresIn: "id",
                 });
-                res.cookies("token", token, {
+                res.cookie("token", token, {
                     httpOnly: true,
                     maxAge: 24 * 60 * 60 * 1000,
                 });
@@ -30,4 +31,11 @@ export const adminLogin=async(req,res)=>{
 export const adminLogout = (req,res) => {
     res.clearCookie("token");
     res.json({ message: "Logout successfull", success: true});
+};
+export const checkAdmin=async(req,res)=>{
+    try{
+        return res.status(200).json({success:true});
+    }catch(error){
+        res.json({message:"Internal server error",success:false});
+    }
 };
